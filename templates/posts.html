@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>POSTS</title>
+<h1 style="text-align: center;margin-top: 20px;">Home Page</h1>
+{% endblock %}
+
+{% block body %}
+<a href="/posts/newpost" style="text-decoration: none; color:white;"><button type="button" class="btn btn-success btn-lg btn-block" style="margin-top:20px;">Create a New Blog Post</button></a>
+<hr>
+
+<h1 style="text-align: left">Posts</h1><hr>
+    {% for post in posts %}
+        <h3>{{ post.title }}</h3>
+        {% if post.author %}
+            <small >By: {{ post.author }}</small>
+        {% else %}
+            <samll>By: 'N/A'</small>
+        {% endif %}
+        <p style="white-space: pre-wrap;">{{ post.content }}</p>
+        <a class="btn btn-danger" href="/posts/delete/{{ post.id }}">Delete</a>
+        <a class="btn btn-primary" href="/posts/edit/{{ post.id }}">Edit</a>
+        <hr>
+    {% endfor %}
+{% endblock %}
